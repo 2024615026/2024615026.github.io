@@ -46,7 +46,7 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 40px; /* Reduced padding slightly to fit audio */
+            padding: 40px;
             
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             z-index: 10;
@@ -80,22 +80,37 @@
         }
 
         audio {
-            width: 100%;
-            height: 40px;
-            outline: none;
-            filter: invert(1) hue-rotate(180deg); /* Makes standard player look cool/dark */
+            width: 100%; height: 40px; outline: none;
+            filter: invert(1) hue-rotate(180deg);
         }
 
-        /* --- BUTTON --- */
-        .btn-home {
-            display: inline-block; padding: 12px 35px;
+        /* --- BUTTONS --- */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-home, .btn-explore {
+            display: inline-block; padding: 12px 30px;
             background: transparent; border: 2px solid #64ffda; color: #64ffda;
             font-family: 'Montserrat', sans-serif; text-decoration: none; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; transition: 0.3s;
         }
         
+        /* Different style for Explore button */
+        .btn-explore {
+            background: #64ffda; color: #000;
+        }
+
         .btn-home:hover { 
             background: #64ffda; color: #000; box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); 
+            transform: translateY(-3px);
+        }
+        
+        .btn-explore:hover {
+            background: #fff; color: #000; border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
             transform: translateY(-3px);
         }
 
@@ -107,6 +122,7 @@
             .about-card { width: 95%; padding: 25px; }
             .about-card h2 { font-size: 1.6rem; }
             .about-text { font-size: 0.9rem; }
+            .btn-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -136,7 +152,10 @@
                 </audio>
             </div>
 
-            <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Surface</a>
+            <div class="btn-group">
+                <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Surface</a>
+                <a href="skills.html" class="btn-explore">Explore More <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </div>
 
