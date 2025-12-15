@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Site</title>
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevents scrollbars from the moving backgrounds */
+            font-family: sans-serif;
+        }
+
+        /* --- THE SPLIT CONTAINER --- */
+        .split-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex; /* Creates the side-by-side layout */
+        }
+
+        /* --- LEFT SIDE: MOVING OCEAN --- */
+        .split-left {
+            width: 50%;
+            height: 100%;
+            /* Deep Ocean Gradient */
+            background: linear-gradient(135deg, #020c1b, #0a192f, #004e92, #020c1b);
+            background-size: 300% 300%; /* Larger size allows movement */
+            animation: oceanFlow 10s ease infinite; /* The moving animation */
+            position: relative;
+        }
+
+        /* --- RIGHT SIDE: MOVING TECH GRID --- */
+        .split-right {
+            width: 50%;
+            height: 100%;
+            background-color: #111; /* Dark base color */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* The Grid Pattern Overlay */
+        .split-right::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            /* Creating the grid lines */
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px; /* Size of grid squares */
+            animation: gridMove 20s linear infinite; /* The moving animation */
+        }
+
+        /* --- CENTER CIRCLE IMAGE --- */
+        .center-profile {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Keeps it perfectly centered */
+            
+            width: 250px;  /* Size of the circle */
+            height: 250px; /* Must match width */
+            
+            border-radius: 50%; /* Makes it a circle */
+            border: 5px solid #64ffda; /* Neon border */
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5); /* Glowing effect */
+            
+            overflow: hidden; /* Crops the image to the circle */
+            z-index: 10; /* Ensures it sits on top of the backgrounds */
+            background-color: #000; /* Fallback color */
+        }
+
+        .center-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills circle without stretching */
+        }
+
+        /* --- TEXT/CONTENT (Optional) --- */
+        .content-overlay {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            pointer-events: none; /* Lets clicks pass through to background */
+        }
+
+        /* --- ANIMATIONS (KEYFRAMES) --- */
+        
+        /* 1. Pulse the Ocean Colors */
+        @keyframes oceanFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 2. Slide the Tech Grid */
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-40px, -40px); } /* Move exactly 1 square size for infinite loop */
+        }
+
+        /* Mobile Responsive: Stack them on small screens */
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+            }
+            .split-left, .split-right {
+                width: 100%;
+                height: 50%;
+            }
+            .center-profile {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="split-container">
+        <div class="split-left"></div>
+
+        <div class="split-right"></div>
+
+        <div class="center-profile">
+            <img src="your-photo.jpg" alt="Profile Picture">
+        </div>
+
+        <div class="content-overlay">
+            <h1>Mohd Zulkflee</h1>
+            <p>Engineer // Freediver</p>
+        </div>
+    </div>
+
+</body>
+</html>
