@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -16,118 +15,87 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body, html { 
-            height: 100%; 
-            width: 100%; 
-            overflow: hidden; 
-            background: #000; 
-            /* Applied Montserrat to match Index */
-            font-family: 'Montserrat', sans-serif; 
-            color: white; 
+            height: 100%; width: 100%; overflow: hidden; background: #000; 
+            font-family: 'Montserrat', sans-serif; color: white; 
         }
 
-        /* --- BACKGROUNDS (Same as Index) --- */
+        /* --- BACKGROUNDS --- */
         .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
         .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; }
         .split-bottom { background-color: #111; }
 
-        /* Updated to .png */
         .split-top::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/ocean-bg.png') center center no-repeat; 
-            background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; 
-            filter: brightness(0.6); /* Darker than index for readability */
+            background: url('images/ocean-bg.png') center center no-repeat; background-size: cover;
+            animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6);
         }
 
-        /* Updated to .png */
         .split-bottom::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/tech-bg.png') center center no-repeat; 
-            background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; 
-            filter: hue-rotate(180deg) brightness(0.5); /* Darker than index for readability */
+            background: url('images/tech-bg.png') center center no-repeat; background-size: cover;
+            animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5);
         }
 
-        /* --- ABOUT CONTENT CARD --- */
+        /* --- ABOUT CARD --- */
         .about-card {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 85%; max-width: 800px;
             
-            /* Glassmorphism Effect */
-            background: rgba(12, 20, 30, 0.75); /* Slightly darker for better text contrast */
+            background: rgba(12, 20, 30, 0.75);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 50px;
+            padding: 40px; /* Reduced padding slightly to fit audio */
             
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             z-index: 10;
             text-align: center;
-            
-            /* Animation on load */
-            opacity: 0; 
-            animation: fadeIn 0.8s ease-out forwards; 
+            opacity: 0; animation: fadeIn 0.8s ease-out forwards; 
         }
 
-        /* Heading Style (Montserrat Extra Bold) */
         .about-card h2 {
-            font-weight: 900;
-            font-size: 2.5rem; 
-            color: white; 
-            margin-bottom: 15px; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            font-weight: 900; font-size: 2.2rem; color: white; margin-bottom: 10px; 
+            text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* Subtitle (Fira Code - Keeps the coding vibe) */
         .about-card h3 {
-            font-family: 'Fira Code', monospace; 
-            color: #64ffda; /* Cyber Cyan */
-            font-size: 1rem; 
-            margin-bottom: 30px;
-            background: rgba(100, 255, 218, 0.1);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 5px;
+            font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 25px;
+            background: rgba(100, 255, 218, 0.1); display: inline-block; padding: 5px 15px; border-radius: 5px;
         }
 
-        /* Body Text (Montserrat Regular) */
         .about-text {
-            font-weight: 400;
-            font-size: 1.1rem; 
-            line-height: 1.8; 
-            color: #e6f1ff; 
-            margin-bottom: 40px;
+            font-weight: 400; font-size: 1rem; line-height: 1.6; color: #e6f1ff; margin-bottom: 20px;
         }
         
-        /* Strong highlights */
-        .about-text strong {
-            color: #fff;
-            font-weight: 700;
+        .about-text strong { color: #fff; font-weight: 700; }
+
+        /* --- AUDIO PLAYER STYLE --- */
+        .audio-container {
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
-        /* Button Style */
+        audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+            filter: invert(1) hue-rotate(180deg); /* Makes standard player look cool/dark */
+        }
+
+        /* --- BUTTON --- */
         .btn-home {
-            display: inline-block; 
-            padding: 15px 40px;
-            background: transparent; 
-            border: 2px solid #64ffda; 
-            color: #64ffda;
-            font-family: 'Montserrat', sans-serif; 
-            text-decoration: none; 
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            transition: 0.3s;
+            display: inline-block; padding: 12px 35px;
+            background: transparent; border: 2px solid #64ffda; color: #64ffda;
+            font-family: 'Montserrat', sans-serif; text-decoration: none; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; transition: 0.3s;
         }
         
         .btn-home:hover { 
-            background: #64ffda; 
-            color: #000;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); 
+            background: #64ffda; color: #000; box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); 
             transform: translateY(-3px);
         }
 
@@ -136,9 +104,9 @@
         @keyframes fadeIn { 0% { opacity: 0; transform: translate(-50%, -45%); } 100% { opacity: 1; transform: translate(-50%, -50%); } }
         
         @media (max-width: 768px) {
-            .about-card { width: 90%; padding: 30px; }
-            .about-card h2 { font-size: 1.8rem; }
-            .about-text { font-size: 0.95rem; line-height: 1.6; }
+            .about-card { width: 95%; padding: 25px; }
+            .about-card h2 { font-size: 1.6rem; }
+            .about-text { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -154,9 +122,19 @@
             
             <p class="about-text">
                 I am an <strong>IT Engineer</strong> who builds resilient cloud architectures, and a <strong>Freediver</strong> who explores the silence of the deep. 
-                <br><br>
-                On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency. Both worlds require discipline, precision, and the ability to handle pressure.
+                On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency.
             </p>
+
+            <p class="about-text">
+                I even have a special song created for myself, click Play below.
+            </p>
+
+            <div class="audio-container">
+                <audio controls>
+                    <source src="binary-breath.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
 
             <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Surface</a>
         </div>
