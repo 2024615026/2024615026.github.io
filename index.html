@@ -3,159 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zulkflee | Engineer & Freediver</title>
+    <title>Zulkflee | Home</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET & BASIC SETUP --- */
+        /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; 
-            width: 100%; 
-            overflow: hidden; 
-            background: #000;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 18px;
-            color: white;
-        }
+        body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Rajdhani', sans-serif; color: white; }
 
-        /* --- MAIN CONTAINER --- */
-        .split-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- BACKGROUNDS --- */
+        .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
 
-        /* =========================================
-           TOP SECTION - THE OCEAN
-        ========================================= */
-        .split-top {
-            position: relative;
-            width: 100%;
-            height: 50%;
-            overflow: hidden;
-        }
+        .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; }
+        .split-bottom { background-color: #111; }
 
+        /* IMAGES (Fixed to .jpg) */
         .split-top::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            
-            /* 🔴 ACTION REQUIRED: Changed to .png */
-            background: url('images/ocean-bg.png') center center no-repeat;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* CORRECTION: .jpg extension */
+            background: url('images/ocean-bg.png') center center no-repeat; 
             background-size: cover;
-            
-            /* Slow Zoom Animation */
-            animation: slowZoom 30s infinite alternate ease-in-out;
-            filter: brightness(0.8); 
-        }
-
-        /* =========================================
-           BOTTOM SECTION - THE TECH
-        ========================================= */
-        .split-bottom {
-            position: relative;
-            width: 100%;
-            height: 50%;
-            overflow: hidden;
-            background-color: #111;
+            animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.8);
         }
 
         .split-bottom::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            
-            /* 🔴 ACTION REQUIRED: Changed to .png */
-            background: url('images/tech-bg.png') center center no-repeat;
-            
-            /* Changed to 'cover' so it acts like a full photo, not a tile */
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* CORRECTION: .jpg extension */
+            background: url('images/tech-bg.png') center center no-repeat; 
             background-size: cover;
-            
-            /* Applied the same Slow Zoom Animation */
-            animation: slowZoom 30s infinite alternate ease-in-out;
-            
-            /* Optional: slight hue rotation to make it look "techy" (cyan/blue) */
-            filter: hue-rotate(180deg) brightness(0.7);
+            animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.7);
         }
 
-        /* =========================================
-           CENTER CIRCLE IMAGE
-        ========================================= */
+        /* --- CLICKABLE CENTER PROFILE --- */
         .center-profile {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1); /* Initial State */
             width: 250px; height: 250px;
-            
             border-radius: 50%;
-            border: 4px solid #64ffda; /* Neon Cyan */
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.6); /* Glow */
-            
-            overflow: hidden;
-            z-index: 10;
-            background-color: #000;
+            border: 4px solid #64ffda;
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.6);
+            overflow: hidden; z-index: 20; background-color: #000;
+            cursor: pointer; /* Shows hand cursor */
+            transition: transform 0.5s ease-in, opacity 0.5s ease-in, box-shadow 0.3s;
         }
 
-        .center-profile img {
-            width: 100%; height: 100%; object-fit: cover;
+        /* Hover Effect */
+        .center-profile:hover { box-shadow: 0 0 50px rgba(100, 255, 218, 0.9); transform: translate(-50%, -50%) scale(1.05); }
+
+        /* Vanish State (Added via JS) */
+        .center-profile.vanish {
+            transform: translate(-50%, -50%) scale(0); /* Shrinks to nothing */
+            opacity: 0;
         }
 
-        /* =========================================
-           TEXT OVERLAY
-        ========================================= */
+        .center-profile img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+
+        /* --- TEXT --- */
         .content-overlay {
-            position: absolute;
-            bottom: 8%;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-            pointer-events: none;
+            position: absolute; bottom: 8%; width: 100%; text-align: center; z-index: 10; pointer-events: none;
+            transition: opacity 0.5s;
         }
+        .content-overlay h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 4px 15px rgba(0,0,0,0.9); }
+        .content-overlay p { font-family: 'Fira Code', monospace; font-size: 1.1rem; color: #64ffda; background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 4px; border: 1px solid rgba(100, 255, 218, 0.3); }
 
-        .content-overlay h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
-        }
+        /* --- ANIMATIONS --- */
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
 
-        .content-overlay p { 
-            font-family: 'Fira Code', monospace;
-            font-size: 1.1rem; 
-            color: #64ffda; 
-            letter-spacing: 1px; 
-            background: rgba(0,0,0,0.6);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 4px;
-            border: 1px solid rgba(100, 255, 218, 0.3);
-        }
-
-        /* =========================================
-           ANIMATION KEYFRAMES
-        ========================================= */
-        
-        /* Shared Zoom Animation for Top and Bottom */
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); } /* Zooms in 15% */
-        }
-
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .center-profile { width: 180px; height: 180px; }
-            .content-overlay h1 { font-size: 2rem; letter-spacing: 2px; }
-            .content-overlay p { font-size: 0.9rem; }
+            .content-overlay h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -163,18 +82,33 @@
 
     <div class="split-container">
         <div class="split-top"></div>
-
         <div class="split-bottom"></div>
 
-        <div class="center-profile">
+        <div class="center-profile" onclick="navigateToAbout()">
             <img src="images/profile.jpg" alt="Mohd Zulkflee">
         </div>
 
-        <div class="content-overlay">
+        <div class="content-overlay" id="text-content">
             <h1>Mohd Zulkflee</h1>
-            <p>&lt; IT Engineer // Freediver /&gt;</p>
+            <p>Click Image to Enter System</p>
         </div>
     </div>
+
+    <script>
+        function navigateToAbout() {
+            const profile = document.querySelector('.center-profile');
+            const text = document.getElementById('text-content');
+            
+            // 1. Add the vanish class to trigger CSS animation
+            profile.classList.add('vanish');
+            text.style.opacity = '0'; // Fade out text too
+
+            // 2. Wait 500ms (0.5s) for animation to finish, then redirect
+            setTimeout(() => {
+                window.location.href = 'about.html';
+            }, 500);
+        }
+    </script>
 
 </body>
 </html>
