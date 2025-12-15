@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zulkflee | Home</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
     <style>
         /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,20 +18,25 @@
             width: 100%; 
             overflow: hidden; 
             background: #000; 
-            /* 1. Updated Font to Brush Script MT */
-            font-family: "Lato"; 
-            color: white; 
+            font-family: 'Montserrat', sans-serif; 
         }
 
-        /* --- BACKGROUNDS --- */
-        .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
+        /* --- LAYOUT CONTAINER --- */
+        .split-container { 
+            position: relative; 
+            width: 100%; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
 
+        /* --- SPLIT SECTIONS --- */
         .split-top, .split-bottom { 
             position: relative; 
             width: 100%; 
             height: 50%; 
             overflow: hidden;
-            /* Flexbox to center the text inside these sections */
+            /* Flexbox centers the text perfectly */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,53 +44,87 @@
         
         .split-bottom { background-color: #111; }
 
-        /* IMAGES */
+        /* --- BACKGROUND IMAGES (Updated to .png) --- */
         .split-top::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* 🔴 ACTION: Updated to .png */
             background: url('images/ocean-bg.png') center center no-repeat; 
             background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.8);
+            /* Slow zoom animation */
+            animation: slowZoom 30s infinite alternate ease-in-out; 
+            /* Darken slightly so white text pops */
+            filter: brightness(0.85);
             z-index: 0;
         }
 
         .split-bottom::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* 🔴 ACTION: Updated to .png */
             background: url('images/tech-bg.png') center center no-repeat; 
             background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.7);
+            /* Slow zoom animation */
+            animation: slowZoom 30s infinite alternate ease-in-out; 
+            /* Darken and hue shift for tech vibe */
+            filter: hue-rotate(180deg) brightness(0.6);
             z-index: 0;
         }
 
-        /* --- NEW TEXT STYLING --- */
+        /* --- TYPOGRAPHY (The "Great Look") --- */
         .section-text {
-            z-index: 10; /* Ensures text sits above background image */
-            font-size: 8rem; /* Large text size */
-            text-shadow: 0 4px 8px rgba(0,0,0,0.8); /* Shadow for readability */
-            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 10; /* Sits above image */
+            
+            /* Responsive Font Sizing: */
+            /* Minimum 2rem, Preferred 6vw, Maximum 6rem */
+            font-size: clamp(2.5rem, 6vw, 6rem); 
+            
+            font-weight: 900; /* Extra Bold */
+            text-transform: uppercase;
+            letter-spacing: 0.15em; /* Cinematic spacing */
             text-align: center;
+            line-height: 1.1;
+            
+            /* Heavy shadow to ensure readability on ANY image */
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            
+            pointer-events: none; /* Let clicks pass through */
+            transition: opacity 0.5s ease;
         }
 
-        /* Specific colors/adjustments if needed */
-        .text-top { color: #FFFFFF; } /* Light cyan tint for sea */
-        .text-bottom { color: #FFFFFF; } /* Neon tech tint for land */
+        /* Top Text: Arctic White */
+        .text-top { 
+            color: #ffffff; 
+        }
 
-        /* --- CLICKABLE CENTER PROFILE --- */
+        /* Bottom Text: Cyber Cyan (glows) */
+        .text-bottom { 
+            color: #64ffda; 
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.4), 0 5px 15px rgba(0,0,0,0.9);
+        }
+
+        /* --- CENTER PROFILE BUTTON --- */
         .center-profile {
             position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(1); /* Initial State */
+            transform: translate(-50%, -50%) scale(1);
             width: 250px; height: 250px;
+            
             border-radius: 50%;
-            border: 4px solid #64ffda;
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.6);
+            /* White border looks cleaner with this theme */
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            
             overflow: hidden; z-index: 20; background-color: #000;
-            cursor: pointer; /* Shows hand cursor */
-            transition: transform 0.5s ease-in, opacity 0.5s ease-in, box-shadow 0.3s;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
         }
 
-        /* Hover Effect */
-        .center-profile:hover { box-shadow: 0 0 50px rgba(100, 255, 218, 0.9); transform: translate(-50%, -50%) scale(1.05); }
+        /* Hover Effect: Scale up and glow */
+        .center-profile:hover { 
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); 
+            transform: translate(-50%, -50%) scale(1.1); 
+            border-color: #fff;
+        }
 
-        /* Vanish State */
+        /* Vanish State for transition */
         .center-profile.vanish {
             transform: translate(-50%, -50%) scale(0);
             opacity: 0;
@@ -90,11 +133,15 @@
         .center-profile img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
         /* --- ANIMATIONS --- */
-        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+        @keyframes slowZoom { 
+            0% { transform: scale(1); } 
+            100% { transform: scale(1.15); } 
+        }
 
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .center-profile { width: 180px; height: 180px; }
-            .section-text { font-size: 2.5rem; } /* Smaller text on mobile */
+            .center-profile { width: 160px; height: 160px; }
+            .section-text { margin: 0 20px; } /* Prevent touching edges */
         }
     </style>
 </head>
@@ -102,11 +149,11 @@
 
     <div class="split-container">
         <div class="split-top">
-            <h2 class="section-text text-top">Freediver at Sea</h2>
+            <h2 class="section-text text-top">Freediver<br>at Sea</h2>
         </div>
 
         <div class="split-bottom">
-            <h2 class="section-text text-bottom">Engineer at Land</h2>
+            <h2 class="section-text text-bottom">Engineer<br>at Land</h2>
         </div>
 
         <div class="center-profile" onclick="navigateToAbout()">
@@ -119,14 +166,13 @@
             const profile = document.querySelector('.center-profile');
             const texts = document.querySelectorAll('.section-text');
             
-            // 1. Vanish the profile
+            // 1. Shrink profile
             profile.classList.add('vanish');
             
-            // 2. Fade out the text labels
+            // 2. Fade out text
             texts.forEach(text => text.style.opacity = '0');
-            texts.forEach(text => text.style.transition = 'opacity 0.5s');
 
-            // 3. Wait 500ms then redirect
+            // 3. Redirect after animation
             setTimeout(() => {
                 window.location.href = 'about.html';
             }, 500);
@@ -135,5 +181,3 @@
 
 </body>
 </html>
-
-
