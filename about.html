@@ -4,161 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zulkflee | About</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- RESET --- */
+        /* [KEEP PREVIOUS CSS] */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; width: 100%; overflow: hidden; background: #000; 
-            font-family: 'Montserrat', sans-serif; color: white; 
-        }
-
-        /* --- BACKGROUNDS --- */
+        body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; color: white; }
         .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
         .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; }
         .split-bottom { background-color: #111; }
-
-        .split-top::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/ocean-bg.png') center center no-repeat; background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6);
-        }
-
-        .split-bottom::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/tech-bg.png') center center no-repeat; background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5);
-        }
-
-        /* --- ABOUT CARD (FIXED FOR MOBILE SCROLLING) --- */
-        .about-card {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%; max-width: 800px;
-            
-            /* 🔴 MOBILE FIX: Constrain height and allow scrolling */
-            max-height: 90vh; 
-            overflow-y: auto; 
-            
-            background: rgba(12, 20, 30, 0.75);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            z-index: 10;
-            text-align: center;
-            opacity: 0; animation: fadeIn 0.8s ease-out forwards; 
-            
-            /* Clean scrollbar */
-            scrollbar-width: thin;
-            scrollbar-color: #64ffda rgba(255,255,255,0.1);
-        }
-
-        .about-card h2 {
-            font-weight: 900; font-size: 2.2rem; color: white; margin-bottom: 10px; 
-            text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .about-card h3 {
-            font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 25px;
-            background: rgba(100, 255, 218, 0.1); display: inline-block; padding: 5px 15px; border-radius: 5px;
-        }
-
-        .about-text {
-            font-weight: 400; font-size: 1rem; line-height: 1.6; color: #e6f1ff; margin-bottom: 20px;
-        }
+        .split-top::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/ocean-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6); }
+        .split-bottom::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/tech-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5); }
         
-        .about-text strong { color: #fff; font-weight: 700; }
-
-        /* --- AUDIO PLAYER --- */
-        .audio-container {
-            margin-bottom: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
+        .about-card {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 800px; max-height: 80vh; overflow-y: auto;
+            background: rgba(12, 20, 30, 0.75); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 10; text-align: center; opacity: 0; animation: fadeIn 0.8s ease-out forwards;
+            scrollbar-width: thin; scrollbar-color: #64ffda rgba(255,255,255,0.1);
         }
+        .about-card h2 { font-weight: 900; font-size: 2.2rem; color: white; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        .about-card h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 25px; background: rgba(100, 255, 218, 0.1); display: inline-block; padding: 5px 15px; border-radius: 5px; }
+        .about-text { font-weight: 400; font-size: 1rem; line-height: 1.6; color: #e6f1ff; margin-bottom: 20px; }
+        
+        /* 🟢 QUOTE STYLE (Item 7) */
+        blockquote { font-style: italic; border-left: 3px solid #64ffda; margin: 20px 0; padding: 10px 20px; background: rgba(255,255,255,0.05); color: #ccc; }
 
+        .audio-container { margin-bottom: 30px; background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px; border: 1px solid rgba(100, 255, 218, 0.2); }
         audio { width: 100%; height: 40px; outline: none; filter: invert(1) hue-rotate(180deg); }
-
-        /* --- NAVIGATION MENU --- */
         .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-
-        .nav-btn {
-            padding: 15px;
-            background: rgba(100, 255, 218, 0.1);
-            border: 1px solid #64ffda;
-            color: #64ffda;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 10px;
-            transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-
-        .nav-btn:hover { background: #64ffda; color: #000; transform: translateY(-3px); box-shadow: 0 0 15px rgba(100, 255, 218, 0.4); }
-
-        /* Back Button */
-        .btn-surface {
-            display: inline-block; padding: 10px 30px; margin-top: 10px;
-            border: 1px solid rgba(255,255,255,0.3); color: #bbb;
-            text-decoration: none; font-size: 0.9rem; border-radius: 50px;
-            transition: 0.3s;
-        }
+        .nav-btn { padding: 15px; background: rgba(100, 255, 218, 0.1); border: 1px solid #64ffda; color: #64ffda; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .nav-btn:hover { background: #64ffda; color: #000; transform: translateY(-3px); }
+        .btn-surface { display: inline-block; padding: 10px 30px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.3); color: #bbb; text-decoration: none; font-size: 0.9rem; border-radius: 50px; transition: 0.3s; }
         .btn-surface:hover { color: white; border-color: white; background: rgba(255,255,255,0.1); }
+        
+        .site-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px; text-align: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px); border-top: 1px solid rgba(100, 255, 218, 0.1); z-index: 100; font-size: 0.75rem; color: #8892b0; line-height: 1.6; }
+        .site-footer a { color: #64ffda; text-decoration: none; transition: 0.3s; }
+        .site-footer a:hover { color: white; text-decoration: underline; }
 
-        /* --- ANIMATIONS --- */
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translate(-50%, -45%); } 100% { opacity: 1; transform: translate(-50%, -50%); } }
-        
-        @media (max-width: 768px) {
-            .about-card { width: 95%; padding: 25px; }
-            .about-card h2 { font-size: 1.6rem; }
-            .nav-grid { grid-template-columns: 1fr; }
-        }
-        /* --- FOOTER --- */
-.site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px; /* Compact padding */
-    text-align: center;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
-    border-top: 1px solid rgba(100, 255, 218, 0.1);
-    z-index: 100;
-    font-size: 0.75rem; /* Smaller font for metadata */
-    color: #8892b0;
-    line-height: 1.6;
-}
-
-.site-footer a {
-    color: #64ffda;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.site-footer a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-/* Push content up so footer doesn't hide it */
-.about-card, .skills-card, .edu-card, .career-card, .contact-card {
-    max-height: 80vh; 
-}
     </style>
 </head>
 <body>
@@ -167,14 +54,19 @@
         <div class="split-top"></div>
         <div class="split-bottom"></div>
 
-        <div class="about-card">
-            <h2>Dual Identity</h2>
-            <h3>&lt; System.Connect(Ocean, Cloud); /&gt;</h3>
+        <main class="about-card">
+            <header>
+                <h2>Dual Identity</h2>
+                <h3>&lt; System.Connect(Ocean, Cloud); /&gt;</h3>
+            </header>
             
             <p class="about-text">
                 I am an <strong>IT Engineer</strong> who builds resilient cloud architectures, and a <strong>Freediver</strong> who explores the silence of the deep. 
-                On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency.
             </p>
+
+            <blockquote>
+                "The ocean stirs the heart, inspires the imagination and brings eternal joy to the soul."
+            </blockquote>
 
             <div class="audio-container">
                 <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 5px;">Binary Breath (Original Theme)</p>
@@ -184,36 +76,32 @@
                 </audio>
             </div>
 
-            <div class="nav-grid">
+            <nav class="nav-grid">
                 <a href="skills.html" class="nav-btn"><i class="fas fa-code"></i> Skillsets</a>
                 <a href="education.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Education</a>
                 <a href="career.html" class="nav-btn"><i class="fas fa-briefcase"></i> Career</a>
                 <a href="contact.html" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
-            </div>
+            </nav>
 
             <a href="index.html" class="btn-surface"><i class="fas fa-arrow-up"></i> Back to Surface</a>
-        </div>
-    </div>
-<footer class="site-footer">
-    <p>
-        &copy; 2025 Mohd Zulkflee | Student ID: 2024615026
-        <br>
-        Email: <a href="mailto:2024615026@student.uitm.edu.my">2024615026@student.uitm.edu.my</a>
-        <br>
-        <span id="live-time"></span> | Best Viewed on Newer Browser
-        <br>
-        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    </p>
+        </main>
 
-    <script>
-        function updateTime() {
-            const now = new Date();
-            // Formats to: "Tue Dec 16 2025 14:30:00" (matches browser locale)
-            document.getElementById('live-time').innerText = now.toString().split(' GMT')[0]; 
-        }
-        setInterval(updateTime, 1000); // Updates every second
-        updateTime(); // Run immediately
-    </script>
-</footer>
+        <footer class="site-footer">
+            <p>
+                &copy; 2025 Mohd Zulkflee | Student ID: 2024615026
+                <br>
+                Email: <a href="mailto:2024615026@student.uitm.edu.my">2024615026@student.uitm.edu.my</a>
+                <br>
+                <span id="live-time"></span> | Rec. Resolution: 1024x768+ | Last Update: Dec 2025
+                <br>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+            <script>
+                function updateTime() { document.getElementById('live-time').innerText = new Date().toString().split(' GMT')[0]; }
+                setInterval(updateTime, 1000); updateTime();
+            </script>
+        </footer>
+    </div>
+
 </body>
 </html>
