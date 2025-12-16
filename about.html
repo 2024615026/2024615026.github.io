@@ -34,10 +34,10 @@
         /* Mobile Nav */
         .nav-toggle, .hamburger { display: none; }
 
-        /* Content Frame (Static with Gaps) */
+        /* Content Frame */
         .content-frame {
             position: relative;
-            margin: 100px 30px 60px 30px; /* Gaps on corners */
+            margin: 100px 30px 60px 30px;
             height: calc(100vh - 160px);
             background: rgba(12, 20, 30, 0.9);
             border: 1px solid rgba(100, 255, 218, 0.3);
@@ -50,15 +50,32 @@
 
         /* Elements */
         .page-title h2 { font-size: 2.5rem; text-transform: uppercase; }
-        .page-title h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 30px; }
+        .page-title h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 20px; }
         .about-text { max-width: 800px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #e6f1ff; }
         
+        /* --- NEW PROFILE PICTURE STYLE --- */
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%; /* Makes it circular */
+            border: 3px solid #64ffda; /* Cyan Border */
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); /* Glow */
+            object-fit: cover;
+            margin: 10px auto 30px auto; /* Spacing */
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.6);
+        }
+
         blockquote { 
-            font-style: italic; border-left: 4px solid #64ffda; margin: 20px 0; padding: 15px 25px; 
+            font-style: italic; border-left: 4px solid #64ffda; margin: 10px 0 30px 0; padding: 15px 25px; 
             background: rgba(255,255,255,0.05); color: #ccc; max-width: 700px; 
         }
 
-        .audio-container { margin-top: 20px; padding: 15px; border: 1px solid rgba(100,255,218,0.2); border-radius: 10px; background: rgba(0,0,0,0.4); }
+        .audio-container { margin-top: 10px; padding: 15px; border: 1px solid rgba(100,255,218,0.2); border-radius: 10px; background: rgba(0,0,0,0.4); }
         audio { width: 300px; filter: invert(1) hue-rotate(180deg); }
 
         /* Footer */
@@ -86,7 +103,7 @@
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
         <label for="nav-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
         <ul class="nav-links">
-            <li><a href="index.html">Surface</a></li>
+            <li><a href="index.html">Back to Surface</a></li>
             <li><a href="skills.html">Skillsets</a></li>
             <li><a href="education.html">Education</a></li>
             <li><a href="career.html">Careers</a></li>
@@ -105,6 +122,8 @@
             On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency.
         </p>
         
+        <img src="images/me.jpg" alt="Mohd Zulkflee" class="profile-pic">
+
         <blockquote>"The ocean stirs the heart, inspires the imagination and brings eternal joy to the soul."</blockquote>
 
         <div class="audio-container">
@@ -112,6 +131,7 @@
             <audio controls><source src="binary-breath.mp3" type="audio/mpeg"></audio>
         </div>
     </main>
+
     <footer class="site-footer">
         <p>
             &copy; 2025 Mohd Zulkflee | ID: 2024615026 | <a href="mailto:2024615026@student.uitm.edu.my">Email</a>
@@ -121,11 +141,8 @@
             Current Time: <span id="live-time"></span>
         </p>
         <script>
-            function updateTime() {
-                document.getElementById('live-time').innerText = new Date().toLocaleTimeString();
-            }
-            setInterval(updateTime, 1000);
-            updateTime(); // Run immediately on load
+            function updateTime() { document.getElementById('live-time').innerText = new Date().toLocaleTimeString(); }
+            setInterval(updateTime, 1000); updateTime();
         </script>
     </footer>
 </body>
