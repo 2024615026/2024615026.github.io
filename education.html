@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zulkflee | Education</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        /* --- RESET --- */
+        /* [KEEP YOUR PREVIOUS CSS] */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; color: white; }
         .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
@@ -21,7 +20,7 @@
         .split-bottom::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/tech-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5); }
         
         .edu-card {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 900px; height: 85vh; overflow-y: auto;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 900px; height: 80vh; overflow-y: auto;
             background: rgba(12, 20, 30, 0.85); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 10; opacity: 0; animation: fadeIn 0.8s ease-out forwards;
             scrollbar-width: thin; scrollbar-color: #64ffda rgba(255,255,255,0.1);
@@ -29,23 +28,33 @@
         .edu-header { text-align: center; margin-bottom: 40px; }
         .edu-header h2 { font-weight: 900; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
         .edu-header h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; background: rgba(100, 255, 218, 0.1); padding: 5px 15px; border-radius: 5px; display: inline-block; }
+        
         .edu-section { margin-bottom: 40px; }
         .section-title { font-size: 1.5rem; color: #64ffda; margin-bottom: 20px; border-bottom: 1px solid rgba(100,255,218,0.3); padding-bottom: 10px; }
+        
         .edu-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #64ffda; transition: 0.3s; }
         .edu-item:hover { transform: translateX(10px); background: rgba(255,255,255,0.1); }
         .edu-item h4 { font-size: 1.2rem; margin-bottom: 5px; color: white; }
         .edu-item h5 { font-size: 1rem; color: #bbb; margin-bottom: 10px; font-weight: 400; }
         .edu-item .year { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #64ffda; }
-        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        /* --- SINGLE BUTTON --- */
+        /* --- NEW TABLE STYLES --- */
+        .course-table { width: 100%; border-collapse: collapse; margin-top: 15px; color: #ddd; }
+        .course-table th, .course-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(100,255,218,0.2); }
+        .course-table th { background: rgba(100, 255, 218, 0.1); color: #64ffda; font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        .course-table tr:hover { background: rgba(255,255,255,0.05); }
+
         .btn-center { text-align: center; margin-top: 30px; }
         .btn-back { display: inline-block; padding: 10px 30px; border: 2px solid #64ffda; color: #64ffda; text-decoration: none; font-weight: 700; border-radius: 50px; transition: 0.3s; }
         .btn-back:hover { background: #64ffda; color: #000; }
 
+        /* FOOTER STYLES */
+        .site-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px; text-align: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px); border-top: 1px solid rgba(100, 255, 218, 0.1); z-index: 100; font-size: 0.75rem; color: #8892b0; line-height: 1.6; }
+        .site-footer a { color: #64ffda; text-decoration: none; transition: 0.3s; }
+        .site-footer a:hover { color: white; text-decoration: underline; }
+
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translate(-50%, -45%); } 100% { opacity: 1; transform: translate(-50%, -50%); } }
-        @media (max-width: 768px) { .certs-grid { grid-template-columns: 1fr; } .edu-card { padding: 25px; } }
     </style>
 </head>
 <body>
@@ -54,52 +63,84 @@
         <div class="split-top"></div>
         <div class="split-bottom"></div>
 
-        <div class="edu-card">
-            <div class="edu-header">
+        <main class="edu-card">
+            <header class="edu-header">
                 <h2>Academic Journey</h2>
                 <h3>&lt; System.KnowledgeBase(); /&gt;</h3>
-            </div>
+            </header>
 
-            <div class="edu-section">
+            <article class="edu-section">
                 <h3 class="section-title"><i class="fas fa-university"></i> Formal Education</h3>
                 <div class="edu-item">
                     <h4>Bachelor's Degree - Information Science</h4>
                     <h5>Universiti Teknologi MARA (UiTM)</h5>
                     <span class="year"><i class="far fa-calendar-alt"></i> Present</span>
+                    
+                    <table class="course-table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Course Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IMS458</td>
+                                <td>Web Design & Dev</td>
+                                <td>Ongoing</td>
+                            </tr>
+                            <tr>
+                                <td>IMS457</td>
+                                <td>Multimedia for Info Pros</td>
+                                <td>Ongoing</td>
+                            </tr>
+                            <tr>
+                                <td>IMC452</td>
+                                <td>Intro to Metadata</td>
+                                <td>Ongoing</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
                 <div class="edu-item">
                     <h4>Sijil Pelajaran Malaysia (SPM)</h4>
                     <h5>Sek. Men. Agama Sultan Ismail</h5>
                     <span class="year"><i class="far fa-calendar-alt"></i> Dec 1998</span>
                 </div>
-            </div>
+            </article>
 
-            <div class="edu-section">
+            <article class="edu-section">
                 <h3 class="section-title"><i class="fas fa-certificate"></i> Professional Certifications</h3>
-                <div class="certs-grid">
-                    <div class="edu-item">
-                        <h4>Microsoft Certified</h4>
-                        <h5>Azure Fundamentals</h5>
-                    </div>
-                    <div class="edu-item">
-                        <h4>EMC Proven Professional</h4>
-                        <h5>Implementation Engineer & Backup Recovery Associate (2015)</h5>
-                    </div>
-                    <div class="edu-item">
-                        <h4>Symantec Specialist</h4>
-                        <h5>Netbackup 7.0 (2012) & 6.5 (2009)</h5>
-                    </div>
-                    <div class="edu-item">
-                        <h4>ITIL Foundation</h4>
-                        <h5>IT Service Management (2011)</h5>
-                    </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                    <div class="edu-item"><h4>Microsoft</h4><h5>Azure Fundamentals</h5></div>
+                    <div class="edu-item"><h4>EMC Proven</h4><h5>Implementation Engineer</h5></div>
+                    <div class="edu-item"><h4>Symantec</h4><h5>Netbackup Specialist</h5></div>
+                    <div class="edu-item"><h4>ITIL</h4><h5>IT Service Management</h5></div>
                 </div>
-            </div>
+            </article>
 
-            <div class="btn-center">
+            <nav class="btn-center">
                 <a href="about.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to About</a>
-            </div>
-        </div>
+            </nav>
+        </main>
+        
+        <footer class="site-footer">
+            <p>
+                &copy; 2025 Mohd Zulkflee | Student ID: 2024615026
+                <br>
+                Email: <a href="mailto:2024615026@student.uitm.edu.my">2024615026@student.uitm.edu.my</a>
+                <br>
+                <span id="live-time"></span> | Rec. Resolution: 1024x768+ | Last Update: Dec 2025
+                <br>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </p>
+            <script>
+                function updateTime() { document.getElementById('live-time').innerText = new Date().toString().split(' GMT')[0]; }
+                setInterval(updateTime, 1000); updateTime();
+            </script>
+        </footer>
     </div>
 
 </body>
