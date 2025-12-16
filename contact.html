@@ -87,6 +87,7 @@
         <label for="nav-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
         <ul class="nav-links">
             <li><a href="index.html">Surface</a></li>
+			<li><a href="about.html">About</a></li>
             <li><a href="skills.html">Skillsets</a></li>
             <li><a href="education.html">Education</a></li>
             <li><a href="career.html">Careers</a></li>
@@ -113,7 +114,7 @@
             <button type="submit" class="btn-submit">Send Signal <i class="fas fa-satellite-dish"></i></button>
         </form>
     </main>
-<footer class="site-footer">
+    <footer class="site-footer">
         <p>
             &copy; 2025 Mohd Zulkflee | ID: 2024615026 | <a href="mailto:2024615026@student.uitm.edu.my">Email</a>
             <br>
@@ -122,11 +123,8 @@
             Current Time: <span id="live-time"></span>
         </p>
         <script>
-            function updateTime() {
-                document.getElementById('live-time').innerText = new Date().toLocaleTimeString();
-            }
-            setInterval(updateTime, 1000);
-            updateTime(); // Run immediately on load
+            function updateTime() { document.getElementById('live-time').innerText = new Date().toLocaleTimeString(); }
+            setInterval(updateTime, 1000); updateTime();
         </script>
     </footer>
 </body>
