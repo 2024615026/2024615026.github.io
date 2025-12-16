@@ -8,100 +8,114 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        /* [KEEP PREVIOUS CSS] */
+        /* --- GLOBAL CSS --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; color: white; }
-        .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
-        .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; }
-        .split-bottom { background-color: #111; }
-        .split-top::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/ocean-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6); }
-        .split-bottom::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/tech-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5); }
         
-        .about-card {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 800px; max-height: 80vh; overflow-y: auto;
-            background: rgba(12, 20, 30, 0.75); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 10; text-align: center; opacity: 0; animation: fadeIn 0.8s ease-out forwards;
-            scrollbar-width: thin; scrollbar-color: #64ffda rgba(255,255,255,0.1);
+        /* Swapped Backgrounds */
+        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .bg-top { position: absolute; top: 0; width: 100%; height: 50%; background: url('images/tech-bg.png') center center/cover no-repeat; filter: hue-rotate(180deg) brightness(0.5); }
+        .bg-bottom { position: absolute; bottom: 0; width: 100%; height: 50%; background: url('images/ocean-bg.png') center center/cover no-repeat; filter: brightness(0.6); }
+
+        /* Header Navigation */
+        .main-header {
+            position: absolute; top: 0; left: 0; width: 100%; height: 80px;
+            display: flex; justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.85); border-bottom: 1px solid #64ffda; z-index: 100;
         }
-        .about-card h2 { font-weight: 900; font-size: 2.2rem; color: white; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        .about-card h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 25px; background: rgba(100, 255, 218, 0.1); display: inline-block; padding: 5px 15px; border-radius: 5px; }
-        .about-text { font-weight: 400; font-size: 1rem; line-height: 1.6; color: #e6f1ff; margin-bottom: 20px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; }
+        .nav-links li a { 
+            text-decoration: none; color: #bbb; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; padding: 8px 15px; border-radius: 5px; transition: 0.3s; 
+        }
+        .nav-links li a:hover, .nav-links li a.active { color: #000; background: #64ffda; }
         
-        /* 🟢 QUOTE STYLE (Item 7) */
-        blockquote { font-style: italic; border-left: 3px solid #64ffda; margin: 20px 0; padding: 10px 20px; background: rgba(255,255,255,0.05); color: #ccc; }
+        /* Mobile Nav */
+        .nav-toggle, .hamburger { display: none; }
 
-        .audio-container { margin-bottom: 30px; background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px; border: 1px solid rgba(100, 255, 218, 0.2); }
-        audio { width: 100%; height: 40px; outline: none; filter: invert(1) hue-rotate(180deg); }
-        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-        .nav-btn { padding: 15px; background: rgba(100, 255, 218, 0.1); border: 1px solid #64ffda; color: #64ffda; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .nav-btn:hover { background: #64ffda; color: #000; transform: translateY(-3px); }
-        .btn-surface { display: inline-block; padding: 10px 30px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.3); color: #bbb; text-decoration: none; font-size: 0.9rem; border-radius: 50px; transition: 0.3s; }
-        .btn-surface:hover { color: white; border-color: white; background: rgba(255,255,255,0.1); }
+        /* Content Frame (Static with Gaps) */
+        .content-frame {
+            position: relative;
+            margin: 100px 30px 60px 30px; /* Gaps on corners */
+            height: calc(100vh - 160px);
+            background: rgba(12, 20, 30, 0.9);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            overflow-y: auto;
+            text-align: center;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Elements */
+        .page-title h2 { font-size: 2.5rem; text-transform: uppercase; }
+        .page-title h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; margin-bottom: 30px; }
+        .about-text { max-width: 800px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #e6f1ff; }
         
-        .site-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px; text-align: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px); border-top: 1px solid rgba(100, 255, 218, 0.1); z-index: 100; font-size: 0.75rem; color: #8892b0; line-height: 1.6; }
-        .site-footer a { color: #64ffda; text-decoration: none; transition: 0.3s; }
-        .site-footer a:hover { color: white; text-decoration: underline; }
+        blockquote { 
+            font-style: italic; border-left: 4px solid #64ffda; margin: 20px 0; padding: 15px 25px; 
+            background: rgba(255,255,255,0.05); color: #ccc; max-width: 700px; 
+        }
 
-        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
-        @keyframes fadeIn { 0% { opacity: 0; transform: translate(-50%, -45%); } 100% { opacity: 1; transform: translate(-50%, -50%); } }
+        .audio-container { margin-top: 20px; padding: 15px; border: 1px solid rgba(100,255,218,0.2); border-radius: 10px; background: rgba(0,0,0,0.4); }
+        audio { width: 300px; filter: invert(1) hue-rotate(180deg); }
+
+        /* Footer */
+        .site-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px; text-align: center;
+            background: rgba(0, 0, 0, 0.95); font-size: 0.75rem; color: #8892b0; border-top: 1px solid #333; z-index: 100;
+        }
+        .site-footer a { color: #64ffda; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; position: absolute; right: 20px; font-size: 1.5rem; color: #64ffda; cursor: pointer; }
+            .nav-links { 
+                display: none; position: absolute; top: 80px; left: 0; width: 100%; 
+                background: rgba(0,0,0,0.95); flex-direction: column; padding: 20px 0; 
+            }
+            .nav-toggle:checked ~ .nav-links { display: flex; }
+            .content-frame { margin: 90px 15px 50px 15px; padding: 20px; }
+        }
     </style>
 </head>
 <body>
+    <div class="bg-layer"><div class="bg-top"></div><div class="bg-bottom"></div></div>
 
-    <div class="split-container">
-        <div class="split-top"></div>
-        <div class="split-bottom"></div>
+    <header class="main-header">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
+        <ul class="nav-links">
+            <li><a href="index.html">Back to Surface</a></li>
+            <li><a href="skills.html">Skillsets</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="career.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
 
-        <main class="about-card">
-            <header>
-                <h2>Dual Identity</h2>
-                <h3>&lt; System.Connect(Ocean, Cloud); /&gt;</h3>
-            </header>
-            
-            <p class="about-text">
-                I am an <strong>IT Engineer</strong> who builds resilient cloud architectures, and a <strong>Freediver</strong> who explores the silence of the deep. 
-            </p>
+    <main class="content-frame">
+        <div class="page-title">
+            <h2>Dual Identity</h2>
+            <h3>&lt; System.Connect(Ocean, Cloud); /&gt;</h3>
+        </div>
+        
+        <p class="about-text">
+            I am an <strong>IT Engineer</strong> who builds resilient cloud architectures, and a <strong>Freediver</strong> who explores the silence of the deep. 
+            On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency.
+        </p>
+        
+        <blockquote>"The ocean stirs the heart, inspires the imagination and brings eternal joy to the soul."</blockquote>
 
-            <blockquote>
-                "The ocean stirs the heart, inspires the imagination and brings eternal joy to the soul."
-            </blockquote>
+        <div class="audio-container">
+            <p style="font-size: 0.8rem; margin-bottom:5px;">Binary Breath (Original Theme)</p>
+            <audio controls><source src="binary-breath.mp3" type="audio/mpeg"></audio>
+        </div>
+    </main>
 
-            <div class="audio-container">
-                <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 5px;">Binary Breath (Original Theme)</p>
-                <audio controls>
-                    <source src="binary-breath.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-
-            <nav class="nav-grid">
-                <a href="skills.html" class="nav-btn"><i class="fas fa-code"></i> Skillsets</a>
-                <a href="education.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Education</a>
-                <a href="career.html" class="nav-btn"><i class="fas fa-briefcase"></i> Career</a>
-                <a href="contact.html" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
-            </nav>
-
-            <a href="index.html" class="btn-surface"><i class="fas fa-arrow-up"></i> Back to Surface</a>
-        </main>
-
-        <footer class="site-footer">
-            <p>
-                &copy; 2025 Mohd Zulkflee | Student ID: 2024615026
-                <br>
-                Email: <a href="mailto:2024615026@student.uitm.edu.my">2024615026@student.uitm.edu.my</a>
-                <br>
-                <span id="live-time"></span> | Rec. Resolution: 1024x768+ | Last Update: Dec 2025
-                <br>
-                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </p>
-            <script>
-                function updateTime() { document.getElementById('live-time').innerText = new Date().toString().split(' GMT')[0]; }
-                setInterval(updateTime, 1000); updateTime();
-            </script>
-        </footer>
-    </div>
-
+    <footer class="site-footer">
+        <p>&copy; 2025 Mohd Zulkflee | ID: 2024615026 | <a href="mailto:2024615026@student.uitm.edu.my">Email Me</a> | <span id="live-time"></span></p>
+        <script>setInterval(() => document.getElementById('live-time').innerText = new Date().toLocaleTimeString(), 1000);</script>
+    </footer>
 </body>
 </html>
