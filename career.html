@@ -13,89 +13,41 @@
     <style>
         /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            height: 100%; width: 100%; overflow: hidden; background: #000; 
-            font-family: 'Montserrat', sans-serif; color: white; 
-        }
-
-        /* --- BACKGROUNDS --- */
+        body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; color: white; }
         .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
         .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; }
         .split-bottom { background-color: #111; }
+        .split-top::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/ocean-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6); }
+        .split-bottom::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/tech-bg.png') center center no-repeat; background-size: cover; animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5); }
 
-        .split-top::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/ocean-bg.png') center center no-repeat; background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: brightness(0.6);
-        }
-
-        .split-bottom::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('images/tech-bg.png') center center no-repeat; background-size: cover;
-            animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5);
-        }
-
-        /* --- CAREER CARD --- */
         .career-card {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%; max-width: 900px;
-            height: 85vh; /* Allow scrolling */
-            overflow-y: auto;
-            
-            background: rgba(12, 20, 30, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            z-index: 10;
-            opacity: 0; animation: fadeIn 0.8s ease-out forwards; 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 900px; height: 85vh; overflow-y: auto;
+            background: rgba(12, 20, 30, 0.85); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 10; opacity: 0; animation: fadeIn 0.8s ease-out forwards;
+            scrollbar-width: thin; scrollbar-color: #64ffda rgba(255,255,255,0.1);
         }
-
         .header { text-align: center; margin-bottom: 40px; }
         .header h2 { font-weight: 900; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
         .header h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; background: rgba(100, 255, 218, 0.1); padding: 5px 15px; border-radius: 5px; display: inline-block; }
-
-        /* --- TIMELINE --- */
-        .timeline { position: relative; border-left: 2px solid rgba(100, 255, 218, 0.3); margin-left: 10px; padding-left: 30px; }
         
-        .job-item {
-            position: relative; margin-bottom: 40px;
-        }
-
-        /* Timeline Dot */
-        .job-item::before {
-            content: ""; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; 
-            background: #64ffda; border-radius: 50%; box-shadow: 0 0 10px #64ffda;
-        }
-
+        .timeline { position: relative; border-left: 2px solid rgba(100, 255, 218, 0.3); margin-left: 10px; padding-left: 30px; }
+        .job-item { position: relative; margin-bottom: 40px; }
+        .job-item::before { content: ""; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: #64ffda; border-radius: 50%; box-shadow: 0 0 10px #64ffda; }
         .job-role { font-size: 1.3rem; font-weight: 700; color: white; }
         .job-company { font-size: 1rem; color: #64ffda; margin-bottom: 5px; font-weight: 600; }
         .job-date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #bbb; margin-bottom: 15px; display: block; }
-        
         .job-details { list-style: none; }
         .job-details li { font-size: 0.95rem; color: #ddd; margin-bottom: 8px; position: relative; padding-left: 15px; }
         .job-details li::before { content: ">"; position: absolute; left: 0; color: #64ffda; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
-
-        /* --- BUTTON --- */
+        
+        /* --- SINGLE BUTTON --- */
         .btn-center { text-align: center; margin-top: 30px; }
-        .btn-back {
-            display: inline-block; padding: 10px 30px; border: 2px solid #64ffda; color: #64ffda; text-decoration: none; font-weight: 700; border-radius: 50px; transition: 0.3s;
-        }
+        .btn-back { display: inline-block; padding: 10px 30px; border: 2px solid #64ffda; color: #64ffda; text-decoration: none; font-weight: 700; border-radius: 50px; transition: 0.3s; }
         .btn-back:hover { background: #64ffda; color: #000; }
 
-        /* --- ANIMATIONS --- */
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translate(-50%, -45%); } 100% { opacity: 1; transform: translate(-50%, -50%); } }
-
-        @media (max-width: 768px) {
-            .career-card { padding: 25px; }
-            .timeline { margin-left: 0; padding-left: 20px; border-left: 2px solid rgba(100, 255, 218, 0.3); }
-            .job-item::before { left: -26px; }
-        }
+        @media (max-width: 768px) { .career-card { padding: 25px; } .timeline { margin-left: 0; padding-left: 20px; border-left: 2px solid rgba(100, 255, 218, 0.3); } .job-item::before { left: -26px; } }
     </style>
 </head>
 <body>
@@ -114,72 +66,67 @@
                 <div class="job-item">
                     <div class="job-role">Senior Data Protection Engineer</div>
                     <div class="job-company">OpenWave Computing</div>
-                    <span class="job-date">Aug 2024 - Present [cite: 24]</span>
+                    [cite_start]<span class="job-date">Aug 2024 - Present [cite: 24]</span>
                     <ul class="job-details">
-                        <li>Manages client's backup/storage operations (Maybank)[cite: 25].</li>
-                        <li>Key person for tech refresh within backup & storage domain[cite: 26].</li>
-                        <li>Design automation scripting using Bash[cite: 27].</li>
-                        <li>In-charge for DR / BCP exercise with various business units[cite: 28].</li>
+                        [cite_start]<li>Manages client's backup/storage operations (Maybank)[cite: 25].</li>
+                        [cite_start]<li>Key person for tech refresh within backup & storage domain[cite: 26].</li>
+                        [cite_start]<li>Design automation scripting using Bash[cite: 27].</li>
+                        [cite_start]<li>In-charge for DR / BCP exercise with various business units[cite: 28].</li>
                     </ul>
                 </div>
-
                 <div class="job-item">
                     <div class="job-role">Tech Lead - Cloud & Data Protection</div>
                     <div class="job-company">Tech Mahindra</div>
-                    <span class="job-date">Nov 2021 - Aug 2024 [cite: 33, 34]</span>
+                    [cite_start]<span class="job-date">Nov 2021 - Aug 2024 [cite: 33, 34]</span>
                     <ul class="job-details">
-                        <li>Manages client's backup operations and engineering domain[cite: 35].</li>
-                        <li>On-prem and cloud data migration planning (DataDomain/Azure)[cite: 35].</li>
-                        <li>Design automation scripting using Bash, Powershell[cite: 36].</li>
-                        <li>In-charge for DR / BCP exercise[cite: 37].</li>
+                        [cite_start]<li>Manages client's backup operations and engineering domain[cite: 35].</li>
+                        [cite_start]<li>On-prem and cloud data migration planning (DataDomain/Azure)[cite: 35].</li>
+                        [cite_start]<li>Design automation scripting using Bash, Powershell[cite: 36].</li>
+                        [cite_start]<li>In-charge for DR / BCP exercise[cite: 37].</li>
                     </ul>
                 </div>
-
                 <div class="job-item">
                     <div class="job-role">Senior Advisor, IT Infrastructure</div>
                     <div class="job-company">Dell EMC</div>
-                    <span class="job-date">Oct 2017 - Oct 2020 [cite: 38]</span>
+                    [cite_start]<span class="job-date">Oct 2017 - Oct 2020 [cite: 38]</span>
                     <ul class="job-details">
-                        <li>Manages internal Dell infrastructure on data protection domain[cite: 39].</li>
-                        <li>Designing system reports using DPA for automation and capacity forecast[cite: 40].</li>
-                        <li>Leading junior engineers on daily BAU and running projects[cite: 39].</li>
+                        [cite_start]<li>Manages internal Dell infrastructure on data protection domain[cite: 39].</li>
+                        [cite_start]<li>Designing system reports using DPA for automation and capacity forecast[cite: 40].</li>
+                        [cite_start]<li>Leading junior engineers on daily BAU and running projects[cite: 39].</li>
                     </ul>
                 </div>
-
                 <div class="job-item">
                     <div class="job-role">Senior Systems Engineer</div>
                     <div class="job-company">AIG Technologies (M) Sdn. Bhd</div>
-                    <span class="job-date">Nov 2012 - Oct 2017 [cite: 47, 48]</span>
+                    [cite_start]<span class="job-date">Nov 2012 - Oct 2017 [cite: 47, 48]</span>
                     <ul class="job-details">
-                        <li>Managing worldwide backup environment internally[cite: 49].</li>
-                        <li>Working closely with vendors (EMC, Dell, IBM, Brocade, Oracle)[cite: 51].</li>
-                        <li>Performing audits to satisfy licensing and capacity planning[cite: 51].</li>
+                        [cite_start]<li>Managing worldwide backup environment internally[cite: 49].</li>
+                        [cite_start]<li>Working closely with vendors (EMC, Dell, IBM, Brocade, Oracle)[cite: 51].</li>
+                        [cite_start]<li>Performing audits to satisfy licensing and capacity planning[cite: 51].</li>
                     </ul>
                 </div>
-
                 <div class="job-item">
                     <div class="job-role">Storage Services Advisor</div>
                     <div class="job-company">Dell EMC</div>
-                    <span class="job-date">Jan 2011 - Nov 2012 [cite: 52, 53]</span>
+                    [cite_start]<span class="job-date">Jan 2011 - Nov 2012 [cite: 52, 53]</span>
                     <ul class="job-details">
-                        <li>Manages backup/storage infrastructure (19 PB storage, 400 nodes)[cite: 54].</li>
-                        <li>Supervise a team of 8 senior analysts[cite: 56].</li>
+                        [cite_start]<li>Manages backup/storage infrastructure (19 PB storage, 400 nodes)[cite: 54].</li>
+                        [cite_start]<li>Supervise a team of 8 senior analysts[cite: 56].</li>
                     </ul>
                 </div>
-
                 <div class="job-item">
                     <div class="job-role">Senior Systems Engineer</div>
                     <div class="job-company">EDS (M) Sdn. Bhd</div>
-                    <span class="job-date">Apr 2007 - Dec 2010 [cite: 58, 59]</span>
+                    [cite_start]<span class="job-date">Apr 2007 - Dec 2010 [cite: 58, 59]</span>
                     <ul class="job-details">
-                        <li>Implementing Veritas Netbackup/EMC solutions for Telcos (TM, Celcom)[cite: 60].</li>
-                        <li>Communicate with Symantec Technical Support for RCA[cite: 61].</li>
+                        [cite_start]<li>Implementing Veritas Netbackup/EMC solutions for Telcos (TM, Celcom)[cite: 60].</li>
+                        [cite_start]<li>Communicate with Symantec Technical Support for RCA[cite: 61].</li>
                     </ul>
                 </div>
             </div>
 
             <div class="btn-center">
-                <a href="skills.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Skills</a>
+                <a href="about.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to About</a>
             </div>
         </div>
     </div>
