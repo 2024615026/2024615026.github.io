@@ -194,6 +194,26 @@
             <a href="index.html" class="btn-surface"><i class="fas fa-arrow-up"></i> Back to Surface</a>
         </div>
     </div>
+<footer class="site-footer">
+    <p>
+        &copy; 2025 Mohd Zulkflee | Student ID: 2024615026
+        <br>
+        Email: <a href="mailto:2024615026@student.uitm.edu.my">2024615026@student.uitm.edu.my</a>
+        <br>
+        <span id="live-time"></span> | Best Viewed on Newer Browser
+        <br>
+        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </p>
 
+    <script>
+        function updateTime() {
+            const now = new Date();
+            // Formats to: "Tue Dec 16 2025 14:30:00" (matches browser locale)
+            document.getElementById('live-time').innerText = now.toString().split(' GMT')[0]; 
+        }
+        setInterval(updateTime, 1000); // Updates every second
+        updateTime(); // Run immediately
+    </script>
+</footer>
 </body>
 </html>
