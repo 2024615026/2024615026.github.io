@@ -84,35 +84,46 @@
             filter: invert(1) hue-rotate(180deg);
         }
 
-        /* --- BUTTONS --- */
-        .btn-group {
+        /* --- NAVIGATION MENU (UPDATED) --- */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            padding: 15px;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid #64ffda;
+            color: #64ffda;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 10px;
+            transition: 0.3s;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
         }
 
-        .btn-home, .btn-explore {
-            display: inline-block; padding: 12px 30px;
-            background: transparent; border: 2px solid #64ffda; color: #64ffda;
-            font-family: 'Montserrat', sans-serif; text-decoration: none; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; transition: 0.3s;
-        }
-        
-        /* Different style for Explore button */
-        .btn-explore {
-            background: #64ffda; color: #000;
+        .nav-btn:hover {
+            background: #64ffda;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
         }
 
-        .btn-home:hover { 
-            background: #64ffda; color: #000; box-shadow: 0 0 20px rgba(100, 255, 218, 0.6); 
-            transform: translateY(-3px);
+        .btn-surface {
+            display: inline-block; padding: 10px 30px;
+            border: 1px solid rgba(255,255,255,0.3); color: #bbb;
+            text-decoration: none; font-size: 0.9rem; border-radius: 50px;
+            transition: 0.3s;
         }
-        
-        .btn-explore:hover {
-            background: #fff; color: #000; border-color: #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-            transform: translateY(-3px);
-        }
+        .btn-surface:hover { color: white; border-color: white; background: rgba(255,255,255,0.1); }
 
         /* --- ANIMATIONS --- */
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
@@ -121,8 +132,7 @@
         @media (max-width: 768px) {
             .about-card { width: 95%; padding: 25px; }
             .about-card h2 { font-size: 1.6rem; }
-            .about-text { font-size: 0.9rem; }
-            .btn-group { flex-direction: column; gap: 10px; }
+            .nav-grid { grid-template-columns: 1fr; } /* Stack buttons on mobile */
         }
     </style>
 </head>
@@ -141,21 +151,22 @@
                 On land, I optimize systems for logic and uptime. Underwater, I optimize my mind for calm and efficiency.
             </p>
 
-            <p class="about-text">
-                I even have a special song created for myself, click Play below.
-            </p>
-
             <div class="audio-container">
+                <p style="font-size: 0.8rem; color: #bbb; margin-bottom: 5px;">Binary Breath (Original Theme)</p>
                 <audio controls>
                     <source src="binary-breath.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>
 
-            <div class="btn-group">
-                <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Back to Surface</a>
-                <a href="skills.html" class="btn-explore">Explore More <i class="fas fa-arrow-right"></i></a>
+            <div class="nav-grid">
+                <a href="skills.html" class="nav-btn"><i class="fas fa-code"></i> Skillsets</a>
+                <a href="education.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="career.html" class="nav-btn"><i class="fas fa-briefcase"></i> Career</a>
+                <a href="contact.html" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
             </div>
+
+            <a href="index.html" class="btn-surface"><i class="fas fa-arrow-up"></i> Back to Surface</a>
         </div>
     </div>
 
