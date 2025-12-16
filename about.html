@@ -36,11 +36,15 @@
             animation: slowZoom 30s infinite alternate ease-in-out; filter: hue-rotate(180deg) brightness(0.5);
         }
 
-        /* --- ABOUT CARD --- */
+        /* --- ABOUT CARD (FIXED FOR MOBILE SCROLLING) --- */
         .about-card {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 85%; max-width: 800px;
+            
+            /* 🔴 MOBILE FIX: Constrain height and allow scrolling */
+            max-height: 90vh; 
+            overflow-y: auto; 
             
             background: rgba(12, 20, 30, 0.75);
             backdrop-filter: blur(15px);
@@ -52,6 +56,10 @@
             z-index: 10;
             text-align: center;
             opacity: 0; animation: fadeIn 0.8s ease-out forwards; 
+            
+            /* Clean scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: #64ffda rgba(255,255,255,0.1);
         }
 
         .about-card h2 {
@@ -70,7 +78,7 @@
         
         .about-text strong { color: #fff; font-weight: 700; }
 
-        /* --- AUDIO PLAYER STYLE --- */
+        /* --- AUDIO PLAYER --- */
         .audio-container {
             margin-bottom: 30px;
             background: rgba(0, 0, 0, 0.3);
@@ -79,18 +87,10 @@
             border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
-        audio {
-            width: 100%; height: 40px; outline: none;
-            filter: invert(1) hue-rotate(180deg);
-        }
+        audio { width: 100%; height: 40px; outline: none; filter: invert(1) hue-rotate(180deg); }
 
-        /* --- NAVIGATION MENU (UPDATED) --- */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
+        /* --- NAVIGATION MENU --- */
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
 
         .nav-btn {
             padding: 15px;
@@ -104,21 +104,14 @@
             letter-spacing: 1px;
             border-radius: 10px;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
-        .nav-btn:hover {
-            background: #64ffda;
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
-        }
+        .nav-btn:hover { background: #64ffda; color: #000; transform: translateY(-3px); box-shadow: 0 0 15px rgba(100, 255, 218, 0.4); }
 
+        /* Back Button */
         .btn-surface {
-            display: inline-block; padding: 10px 30px;
+            display: inline-block; padding: 10px 30px; margin-top: 10px;
             border: 1px solid rgba(255,255,255,0.3); color: #bbb;
             text-decoration: none; font-size: 0.9rem; border-radius: 50px;
             transition: 0.3s;
@@ -132,7 +125,7 @@
         @media (max-width: 768px) {
             .about-card { width: 95%; padding: 25px; }
             .about-card h2 { font-size: 1.6rem; }
-            .nav-grid { grid-template-columns: 1fr; } /* Stack buttons on mobile */
+            .nav-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
