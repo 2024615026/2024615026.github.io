@@ -44,6 +44,7 @@
         <label for="nav-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
         <ul class="nav-links">
             <li><a href="index.html">Surface</a></li>
+			<li><a href="about.html">About</a></li>
             <li><a href="skills.html">Skillsets</a></li>
             <li><a href="education.html">Education</a></li>
             <li><a href="career.html" class="active">Careers</a></li>
@@ -99,11 +100,8 @@
             Current Time: <span id="live-time"></span>
         </p>
         <script>
-            function updateTime() {
-                document.getElementById('live-time').innerText = new Date().toLocaleTimeString();
-            }
-            setInterval(updateTime, 1000);
-            updateTime(); // Run immediately on load
+            function updateTime() { document.getElementById('live-time').innerText = new Date().toLocaleTimeString(); }
+            setInterval(updateTime, 1000); updateTime();
         </script>
     </footer>
 </body>
