@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zulkflee | Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; }
+
+        .split-container { position: relative; width: 100%; height: 100vh; display: flex; flex-direction: column; }
+        .split-top, .split-bottom { position: relative; width: 100%; height: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .split-bottom { background-color: #111; }
+
+        /* TOP: TECH BG (Engineer) */
+        .split-top::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('images/tech-bg.png') center center/cover no-repeat;
+            animation: slowZoom 30s infinite alternate ease-in-out; 
+            filter: hue-rotate(180deg) brightness(0.6); z-index: 0;
+        }
+
+        /* BOTTOM: OCEAN BG (Freediver) */
+        .split-bottom::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('images/ocean-bg.png') center center/cover no-repeat;
+            animation: slowZoom 30s infinite alternate ease-in-out; 
+            filter: brightness(0.85); z-index: 0;
+        }
+
+        .section-text {
+            z-index: 10; font-size: clamp(3rem, 8vw, 8rem); font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.15em; text-align: center; text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            pointer-events: none; transition: opacity 0.5s ease;
+        }
+        .text-top { color: #64ffda; text-shadow: 0 0 20px rgba(100, 255, 218, 0.4), 0 5px 15px rgba(0,0,0,0.9); }
+        .text-bottom { color: #ffffff; }
+
+        .center-profile {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1);
+            width: 250px; height: 250px; border-radius: 50%; border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); overflow: hidden; z-index: 20; background-color: #000;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .center-profile:hover { box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); transform: translate(-50%, -50%) scale(1.1); border-color: #fff; }
+        .center-profile.vanish { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        .center-profile img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+        @media (max-width: 768px) { .center-profile { width: 160px; height: 160px; } }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <div class="split-top">
+            <h2 class="section-text text-top">ENGINEER</h2>
+        </div>
+        <div class="split-bottom">
+            <h2 class="section-text text-bottom">FREEDIVER</h2>
+        </div>
+        <div class="center-profile" onclick="navigateToAbout()">
+            <img src="images/profile.jpg" alt="Mohd Zulkflee">
+        </div>
+    </div>
+    <script>
+        function navigateToAbout() {
+            document.querySelector('.center-profile').classList.add('vanish');
+            document.querySelectorAll('.section-text').forEach(t => t.style.opacity = '0');
+            setTimeout(() => window.location.href = 'aboutme.html', 500);
+        }
+    </script>
+</body>
+</html>

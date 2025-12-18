@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zulkflee | Education</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230c141e' stroke='%2364ffda' stroke-width='5'/><text x='50' y='70' font-family='Courier New, monospace' font-weight='bold' font-size='65' text-anchor='middle' fill='%2364ffda'>Z</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* REUSE CSS FROM ABOUT.HTML */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { height: 100%; width: 100%; overflow: hidden; background: #000; font-family: 'Montserrat', sans-serif; color: white; }
+        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .bg-top { position: absolute; top: 0; width: 100%; height: 50%; background: url('images/tech-bg.png') center center/cover no-repeat; filter: hue-rotate(180deg) brightness(0.5); }
+        .bg-bottom { position: absolute; bottom: 0; width: 100%; height: 50%; background: url('images/ocean-bg.png') center center/cover no-repeat; filter: brightness(0.6); }
+        .main-header { position: absolute; top: 0; left: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.85); border-bottom: 1px solid #64ffda; z-index: 100; }
+        .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; }
+        .nav-links li a { text-decoration: none; color: #bbb; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
+        .nav-links li a:hover, .nav-links li a.active { color: #000; background: #64ffda; }
+        .nav-toggle, .hamburger { display: none; }
+        .content-frame { position: relative; margin: 100px 30px 60px 30px; height: calc(100vh - 160px); background: rgba(12, 20, 30, 0.9); border: 1px solid rgba(100, 255, 218, 0.3); border-radius: 15px; padding: 40px; overflow-y: auto; display: block; }
+        .page-title { text-align: center; margin-bottom: 30px; }
+        .page-title h2 { font-size: 2.5rem; text-transform: uppercase; }
+        .page-title h3 { font-family: 'Fira Code', monospace; color: #64ffda; font-size: 0.9rem; }
+        .site-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px; text-align: center; background: rgba(0, 0, 0, 0.95); font-size: 0.75rem; color: #8892b0; border-top: 1px solid #333; z-index: 100; }
+        .site-footer a { color: #64ffda; text-decoration: none; }
+        @media (max-width: 768px) { .hamburger { display: block; position: absolute; right: 20px; font-size: 1.5rem; color: #64ffda; cursor: pointer; } .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(0,0,0,0.95); flex-direction: column; padding: 20px 0; text-align: center; } .nav-toggle:checked ~ .nav-links { display: flex; } .content-frame { margin: 90px 15px 50px 15px; padding: 20px; } }
+
+        /* EDUCATION SPECIFIC */
+        .edu-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid #64ffda; }
+        .course-table { width: 100%; border-collapse: collapse; margin-top: 15px; color: #ddd; }
+        .course-table th, .course-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(100,255,218,0.2); }
+        .course-table th { background: rgba(100, 255, 218, 0.1); color: #64ffda; font-family: 'Fira Code', monospace; }
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    </style>
+</head>
+<body>
+    <div class="bg-layer"><div class="bg-top"></div><div class="bg-bottom"></div></div>
+    
+    <header class="main-header">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
+        <ul class="nav-links">
+            <li><a href="index.html">Surface</a></li>
+			<li><a href="aboutme.html">About</a></li>
+            <li><a href="skills.html">Skillsets</a></li>
+            <li><a href="education.html" class="active">Education</a></li>
+            <li><a href="career.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <main class="content-frame">
+        <div class="page-title"><h2>Academic Journey</h2><h3>&lt; System.KnowledgeBase(); /&gt;</h3></div>
+
+        <section>
+            <h3 style="color:#64ffda; margin-bottom:15px;">Formal Education</h3>
+            <div class="edu-item">
+                <h4>Bachelor's Degree - Information Science</h4>
+                <h5>Universiti Teknologi MARA (UiTM) | Present</h5>
+                <table class="course-table">
+                    <thead><tr><th>Code</th><th>Course Name</th></tr></thead>
+                    <tbody>
+                        <tr><td>IMC452</td><td>INTRODUCTION TO METADATA</td></tr>
+                        <tr><td>IMS458</td><td>WEB DESIGN AND DEVELOPMENT</td></tr>
+                        <tr><td>IMS457</td><td>MULTIMEDIA FOR INFORMATION PROFESSIONALS</td></tr>
+                        <tr><td>IMS450</td><td>PROBLEM SOLVING AND PROGRAM DESIGN 1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+             <div class="edu-item">
+                <h4>Sijil Pelajaran Malaysia (SPM)</h4>
+                <h5>Sek. Men. Agama Sultan Ismail | 1998</h5>
+            </div>
+        </section>
+
+        <section style="margin-top:30px;">
+            <h3 style="color:#64ffda; margin-bottom:15px;">Certifications</h3>
+            <div class="certs-grid">
+                <div class="edu-item"><h4>Microsoft</h4><h5>Azure Fundamentals</h5></div>
+                <div class="edu-item"><h4>EMC Proven</h4><h5>Implementation Engineer</h5></div>
+                <div class="edu-item"><h4>Symantec</h4><h5>Netbackup Specialist</h5></div>
+                <div class="edu-item"><h4>ITIL</h4><h5>IT Service Management</h5></div>
+            </div>
+        </section>
+    </main>
+<footer class="site-footer">
+        <p>
+            &copy; 2025 Mohd Zulkflee | ID: 2024615026 | <a href="mailto:2024615026@student.uitm.edu.my">Email</a>
+            <br>
+            <em>Rec. Browser: Chrome/Edge | Rec. Res: 1024x768+ | Last Update: Dec 16, 2025</em>
+            <br>
+            Current Time: <span id="live-time"></span>
+        </p>
+        <script>
+            function updateTime() { document.getElementById('live-time').innerText = new Date().toLocaleTimeString(); }
+            setInterval(updateTime, 1000); updateTime();
+        </script>
+    </footer>
+</body>
+</html>
