@@ -30,11 +30,37 @@
         @media (max-width: 768px) { .hamburger { display: block; position: absolute; right: 20px; font-size: 1.5rem; color: #64ffda; cursor: pointer; } .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(0,0,0,0.95); flex-direction: column; padding: 20px 0; text-align: center; } .nav-toggle:checked ~ .nav-links { display: flex; } .content-frame { margin: 90px 15px 50px 15px; padding: 20px; } }
 
         /* EDUCATION SPECIFIC */
-        .edu-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid #64ffda; }
+        .edu-item { 
+            background: rgba(255,255,255,0.05); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            border-left: 3px solid #64ffda; 
+            transition: 0.3s;
+        }
+        .edu-item:hover { background: rgba(255,255,255,0.08); transform: translateX(5px); }
+
+        /* New layout for Logos */
+        .edu-content-wrapper { display: flex; align-items: flex-start; gap: 20px; }
+        
+        .edu-logo { 
+            width: 60px; 
+            height: 60px; 
+            object-fit: contain; 
+            background: rgba(255,255,255,0.9); /* White bg for logos */
+            border-radius: 10px; 
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(100,255,218,0.2);
+        }
+
+        .edu-text h4 { font-size: 1.2rem; margin-bottom: 5px; color: white; }
+        .edu-text h5 { font-size: 0.95rem; color: #bbb; font-weight: 400; margin-bottom: 10px; }
+
         .course-table { width: 100%; border-collapse: collapse; margin-top: 15px; color: #ddd; }
         .course-table th, .course-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(100,255,218,0.2); }
         .course-table th { background: rgba(100, 255, 218, 0.1); color: #64ffda; font-family: 'Fira Code', monospace; }
-        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     </style>
 </head>
 <body>
@@ -57,33 +83,80 @@
         <div class="page-title"><h2>Academic Journey</h2><h3>&lt; System.KnowledgeBase(); /&gt;</h3></div>
 
         <section>
-            <h3 style="color:#64ffda; margin-bottom:15px;">Formal Education</h3>
+            <h3 style="color:#64ffda; margin-bottom:20px; border-bottom: 1px solid #64ffda; padding-bottom:10px;">Formal Education</h3>
+            
             <div class="edu-item">
-                <h4>Bachelor's Degree - Information Science</h4>
-                <h5>Universiti Teknologi MARA (UiTM) | Present</h5>
-                <table class="course-table">
-                    <thead><tr><th>Code</th><th>Course Name</th></tr></thead>
-                    <tbody>
-                        <tr><td>IMC452</td><td>INTRODUCTION TO METADATA</td></tr>
-                        <tr><td>IMS458</td><td>WEB DESIGN AND DEVELOPMENT</td></tr>
-                        <tr><td>IMS457</td><td>MULTIMEDIA FOR INFORMATION PROFESSIONALS</td></tr>
-                        <tr><td>IMS450</td><td>PROBLEM SOLVING AND PROGRAM DESIGN 1</td></tr>
-                    </tbody>
-                </table>
+                <div class="edu-content-wrapper">
+                    <img src="images/uitm.png" alt="UiTM Logo" class="edu-logo">
+                    <div class="edu-text" style="width: 100%;">
+                        <h4>Bachelor's Degree - Information Science</h4>
+                        <h5>Universiti Teknologi MARA (UiTM) | Present</h5>
+                        <table class="course-table">
+                            <thead><tr><th>Code</th><th>Course Name</th></tr></thead>
+                            <tbody>
+                                <tr><td>IMC452</td><td>INTRODUCTION TO METADATA</td></tr>
+                                <tr><td>IMS458</td><td>WEB DESIGN AND DEVELOPMENT</td></tr>
+                                <tr><td>IMS457</td><td>MULTIMEDIA FOR INFORMATION PROFESSIONALS</td></tr>
+                                <tr><td>IMS450</td><td>PROBLEM SOLVING AND PROGRAM DESIGN 1</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-             <div class="edu-item">
-                <h4>Sijil Pelajaran Malaysia (SPM)</h4>
-                <h5>Sek. Men. Agama Sultan Ismail | 1998</h5>
+
+            <div class="edu-item">
+                <div class="edu-content-wrapper">
+                    <img src="images/smasid.jpg" alt="School Logo" class="edu-logo">
+                    <div class="edu-text">
+                        <h4>Sijil Pelajaran Malaysia (SPM)</h4>
+                        <h5>Sek. Men. Agama Sultan Ismail | 1998</h5>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section style="margin-top:30px;">
-            <h3 style="color:#64ffda; margin-bottom:15px;">Certifications</h3>
+        <section style="margin-top:40px;">
+            <h3 style="color:#64ffda; margin-bottom:20px; border-bottom: 1px solid #64ffda; padding-bottom:10px;">Certifications</h3>
             <div class="certs-grid">
-                <div class="edu-item"><h4>Microsoft</h4><h5>Azure Fundamentals</h5></div>
-                <div class="edu-item"><h4>EMC Proven</h4><h5>Implementation Engineer</h5></div>
-                <div class="edu-item"><h4>Symantec</h4><h5>Netbackup Specialist</h5></div>
-                <div class="edu-item"><h4>ITIL</h4><h5>IT Service Management</h5></div>
+                <div class="edu-item">
+                    <div class="edu-content-wrapper">
+                        <img src="images/microsoft.png" alt="Microsoft" class="edu-logo">
+                        <div class="edu-text">
+                            <h4>Microsoft</h4>
+                            <h5>Azure Fundamentals</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="edu-item">
+                    <div class="edu-content-wrapper">
+                        <img src="images/emc.png" alt="EMC" class="edu-logo">
+                        <div class="edu-text">
+                            <h4>EMC Proven</h4>
+                            <h5>Implementation Engineer</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-content-wrapper">
+                        <img src="images/symantec.png" alt="Symantec" class="edu-logo">
+                        <div class="edu-text">
+                            <h4>Symantec</h4>
+                            <h5>Netbackup Specialist</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-content-wrapper">
+                        <img src="images/itil.png" alt="ITIL" class="edu-logo">
+                        <div class="edu-text">
+                            <h4>ITIL</h4>
+                            <h5>IT Service Management</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
